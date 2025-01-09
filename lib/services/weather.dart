@@ -8,7 +8,7 @@ class WeatherModel {
   final String apiKey = '17571f8c7b376b0b0dd5bfdde9d8aae2';
 
   Future<dynamic> getCityWeather(String cityName) async{
-    Networking networking = Networking(url: '$baseUrl?q={city name}&appid=${apiKey}&units=metric');
+    Networking networking = Networking(url: '$baseUrl?q=$cityName&appid=$apiKey&units=metric');
     var weatherData = await networking.getData();
     return weatherData;
 
@@ -20,7 +20,7 @@ class WeatherModel {
     Location location = Location();
     await location.getCurrentPosition();
 
-    Networking networking = Networking(url: '$baseUrl?lat=${location.latitude}&lon=${location.longitude}&appid=${apiKey}');
+    Networking networking = Networking(url: '$baseUrl?lat=${location.latitude}&lon=${location.longitude}&appid=${apiKey}&units=metric');
     var weatherData = await networking.getData();
     return weatherData;
   }
